@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.rybarstudios.movielistsprint1.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,5 +16,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MovieActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun createTextView(movie: Movie, index: Int) {
+        val view = TextView(this)
     }
 }
