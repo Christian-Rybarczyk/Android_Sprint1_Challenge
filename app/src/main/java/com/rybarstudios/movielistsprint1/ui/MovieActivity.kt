@@ -15,30 +15,43 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
 
-        var bundle: Bundle? = intent.extras
+        val bundle: Bundle? = intent.extras
         if (bundle != null) {
-            loadMovie(bundle!!.getSerializable("movie") as Movie)
+            loadMovie(bundle.getSerializable("movie") as Movie)
         }
 
         add_movie_to_list_button.setOnClickListener {
-            var savedMovieIntent = Intent()
+            val savedMovieIntent = Intent()
             savedMovieIntent.putExtra("movie", createMovie())
             setResult(Activity.RESULT_OK, savedMovieIntent)
-            Toast.makeText(this, editText_movie_title.text.toString() + " added to list", Toast.LENGTH_LONG).show()
+            Toast.makeText(this,
+                editText_movie_title.text.toString() + " added to list",
+                Toast.LENGTH_LONG)
+                .show()
+            finish()
+        }
+
+        delete_button.setOnClickListener {
+            val deleteMovieIntent = Intent()
+            setResult(Activity.RESULT_CANCELED, deleteMovieIntent)
+            Toast.makeText(this,
+                editText_movie_title.text.toString() + " removed from list",
+                Toast.LENGTH_LONG)
+                .show()
             finish()
         }
     }
 
-    fun loadMovie(movie: Movie) {
+    private fun loadMovie(movie: Movie) {
         editText_movie_title.setText(movie.title)
+        watched_switch.isChecked = movie.watched
     }
 
-    fun createMovie() : Movie {
-        var newMovie = Movie(editText_movie_title.text.toString(), watched_switch.isChecked)
-        return newMovie
+    private fun createMovie() : Movie {
+        return  Movie(editText_movie_title.text.toString(), watched_switch.isChecked, ListActivity.counter)
     }
 
-    fun deleteMovie() {
+    override fun onBackPressed() {
 
     }
 }

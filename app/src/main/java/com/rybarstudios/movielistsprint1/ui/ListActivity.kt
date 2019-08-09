@@ -13,10 +13,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 class ListActivity : AppCompatActivity() {
 
     var movieList = mutableListOf<Movie>()
-    var counter = 0
 
     companion object {
         const val EDIT_MOVIE_REQUEST_CODE = 42
+        var counter = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class ListActivity : AppCompatActivity() {
         }
     }
 
-    fun refreshMovieList() {
+    private fun refreshMovieList() {
         scrollview_linearLayout.removeAllViews()
         for ((counter, movie) in movieList.withIndex()) {
             scrollview_linearLayout.addView(createTextView(movie, counter))
@@ -65,8 +65,11 @@ class ListActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == EDIT_MOVIE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val newMovie = data!!.getSerializableExtra("movie") as Movie
-            movieList.add(newMovie)
+            if (data != null) {
+                val newMovie = data.getSerializableExtra("movie") as Movie
+                movieList.add(newMovie)
+                counter++
+            }
         }
     }
 }
