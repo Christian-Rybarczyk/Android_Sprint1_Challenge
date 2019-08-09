@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MovieListSprint1</string>
+    <string name="watched">Watched?</string>
+    <string name="movie_title">Enter movie title:</string>
+    <string name="add_movie">ADD MOVIE</string>
+    <string name="delete_movie">DELETE MOVIE</string>
+</resources>
