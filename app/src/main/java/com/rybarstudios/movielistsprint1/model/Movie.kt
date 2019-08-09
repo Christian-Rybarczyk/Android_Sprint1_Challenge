@@ -1,3 +1,5 @@
 package com.rybarstudios.movielistsprint1.model
 
-class Movie(var title: String, var watched: Boolean = false)
+import java.io.Serializable
+
+class Movie(var title: String, var watched: Boolean = false) : Serializable

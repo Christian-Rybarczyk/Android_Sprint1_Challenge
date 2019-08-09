@@ -36,7 +36,7 @@
             android:layout_width="271dp"
             android:layout_height="48dp"
             android:inputType="textPersonName"
-            android:text="@string/movie_title"
+            android:hint="@string/movie_title"
             android:ems="10"
             android:id="@+id/editText_movie_title"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
